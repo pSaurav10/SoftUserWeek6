@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.softuserassignment.model.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,5 +23,20 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        loadList()
+    }
+    private fun loadList(){
+        if(UserList.size == 0){
+            UserList.add(User("Kiran Rana" , 30,"Male", "Lalitpur"))
+            UserList.add(User("Katrina Kaif" , 35,"Female", "India"))
+            UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
+            UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
+            UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
+            UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
+        }
+    }
+
+    companion object{
+        var UserList =ArrayList<User>()
     }
 }
