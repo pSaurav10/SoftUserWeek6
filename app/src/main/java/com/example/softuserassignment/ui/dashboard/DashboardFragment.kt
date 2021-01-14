@@ -20,6 +20,7 @@ class DashboardFragment : Fragment() {
     private lateinit var etName: EditText
     private lateinit var etAge: EditText
     private lateinit var etAddress: EditText
+    private lateinit var rgGender: RadioGroup
     private lateinit var rbMale: RadioButton
     private lateinit var rbFemale: RadioButton
     private lateinit var rbOthers: RadioButton
@@ -35,6 +36,7 @@ class DashboardFragment : Fragment() {
         etName = view?.findViewById(R.id.etName) as EditText
         etAge = view?.findViewById(R.id.etAge) as EditText
         etAddress = view?.findViewById(R.id.etAddress) as EditText
+        rgGender = view?.findViewById(R.id.rgGender) as RadioGroup
         rbMale = view?.findViewById(R.id.rbMale) as RadioButton
         rbFemale = view?.findViewById(R.id.rbFemale) as RadioButton
         rbOthers = view?.findViewById(R.id.rbOthers) as RadioButton
@@ -48,17 +50,21 @@ class DashboardFragment : Fragment() {
                 name = etName.text.toString()
                 age = etAge.text.toString().toInt()
                 address = etAddress.text.toString()
-                if (rbMale.isChecked){
-                    gender = "Male"
-                }else if (rbFemale.isChecked){
-                    gender = "Female"
-                }else if (rbOthers.isChecked){
-                    gender = "Others"
+                when {
+                    rbMale.isChecked -> {
+                        gender = "Male"
+                    }
+                    rbFemale.isChecked -> {
+                        gender = "Female"
+                    }
+                    rbOthers.isChecked -> {
+                        gender = "Others"
+                    }
                 }
                 MainActivity.UserList.add(User(name, age, gender, address))
                 Toast.makeText(this@DashboardFragment.activity as Context?, "Student Added", Toast.LENGTH_SHORT).show()
                 clearText()
-                return@setOnClickListener
+
             }
         }
         return view
@@ -75,6 +81,10 @@ class DashboardFragment : Fragment() {
             etAge.requestFocus()
             return false
         }
+        if (rgGender.checkedRadioButtonId == -1){
+            Toast.makeText(this@DashboardFragment.activity as Context?, "Please select a Gender", Toast.LENGTH_SHORT).show()
+            return false
+        }
         if (TextUtils.isEmpty(etAddress.text)) {
             etAddress.error = "Please enter Address"
             etAddress.requestFocus()
@@ -84,11 +94,9 @@ class DashboardFragment : Fragment() {
         return flag
     }
     fun clearText(){
-        etName!!.text.clear()
-        etAddress!!.text.clear()
-        etAge!!.text.clear()
-        rbMale!!.isChecked = false
-        rbFemale!!.isChecked = false
-        rbOthers!!.isChecked = false
+        etName.text.clear()
+        etAddress.text.clear()
+        etAge.text.clear()
+        rgGender.clearCheck()
     }
 }
