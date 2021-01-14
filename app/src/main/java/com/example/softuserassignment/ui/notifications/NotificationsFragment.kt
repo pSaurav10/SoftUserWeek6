@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,20 +14,23 @@ import com.example.softuserassignment.R
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var web: WebView
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        val view = layoutInflater.inflate(R.layout.fragment_notifications, container, false)
+        web = view?.findViewById(R.id.web) as WebView
+        web.webViewClient = WebViewClient()
+        web.loadUrl("https://softwarica.edu.np/")
+        val webSettings = web.settings
+        webSettings.javaScriptEnabled = true
+        webSettings.allowContentAccess = true
+        webSettings.setAppCacheEnabled(true)
+        webSettings.domStorageEnabled = true
+        webSettings.useWideViewPort = true
+        return view
     }
 }

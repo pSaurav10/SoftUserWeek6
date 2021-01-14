@@ -30,9 +30,6 @@ class MainActivity : AppCompatActivity() {
             UserList.add(User("Kiran Rana" , 30,"Male", "Lalitpur"))
             UserList.add(User("Katrina Kaif" , 35,"Female", "India"))
             UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
-            UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
-            UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
-            UserList.add(User("Daya Rai" , 30,"Male", "Kathmandu"))
         }
     }
 
