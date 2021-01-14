@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -21,7 +22,7 @@ class UserAdapter(val User: ArrayList<User>,
         val tvAge: TextView
         val tvAddress: TextView
         val tvGender: TextView
-        val imgDelete: ImageView
+        val imgDelete: ImageButton
         init {
             imgProfile = view.findViewById(R.id.imgProfile)
             tvName = view.findViewById(R.id.tvName)
