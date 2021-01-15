@@ -63,7 +63,7 @@ class DashboardFragment : Fragment() {
                 }
                 MainActivity.UserList.add(User(name, age, gender, address))
                 Toast.makeText(this@DashboardFragment.activity as Context?, "Student Added", Toast.LENGTH_SHORT).show()
-                clearText()
+                clear()
 
             }
         }
@@ -93,7 +93,7 @@ class DashboardFragment : Fragment() {
 
         return flag
     }
-    fun clearText(){
+    fun clear(){
         etName.text.clear()
         etAddress.text.clear()
         etAge.text.clear()
